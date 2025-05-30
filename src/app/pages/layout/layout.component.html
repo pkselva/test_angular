@@ -1,8 +1,10 @@
-<div>
-    <div>
-        <app-register></app-register>
-    </div>
-    <div>
-        <app-login></app-login>
+<div class="container m-5">
+    <div class="row">
+        <div class="col-6">
+            <app-register (registerList)="registerEvent($event)"></app-register>
+        </div>
+        <div class="col-6">
+            <app-login [list]="registerList"></app-login>
+        </div>
     </div>
 </div>
