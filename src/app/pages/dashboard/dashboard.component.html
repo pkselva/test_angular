@@ -1,0 +1,47 @@
+<div class="container" style="margin-top: 80px; margin-block: 50px;">
+    <div class="mx-auto align-items-end">
+        <div class="d-flex flex-row w-100 justify-content-end">
+            <button class="btn btn-secondary m-3" (click)="onClick()">Switch</button>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngIf="condition; else elseBlock">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container *ngFor="let user of users" [matColumnDef]="user.name">
+                    <th mat-header-cell *matHeaderCellDef>{{user.label}}</th>
+                    <td mat-cell *matCellDef="let element"> {{element[user.name]}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <ng-template #elseBlock>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div *ngFor="let data of dataSource">
+                    <mat-card class="example-card" appearance="outlined">
+                        <mat-card-content>
+                            <div *ngFor="let val of list; let i = index" class="d-flex flex-row gap-3">
+                                <span *ngFor="let value of list[i]">
+                                    {{data[value.name]}}
+                                </span>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <!-- <div *ngFor="let data of dataSource">
+                    <mat-card class="example-card" appearance="outlined">
+                        <mat-card-content>
+                            <div *ngFor="let item of cardViewFields | keyvalue" class="d-flex flex-row gap-3">
+                                <span *ngFor="let value of cardViewFields[item.key]">
+                                    {{data[value.name]}}
+                                </span>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div> -->
+            </div>
+        </ng-template>
+    </div>
+</div>

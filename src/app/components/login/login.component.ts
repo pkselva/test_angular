@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,24 +14,27 @@ export class LoginComponent {
 
   @Input() list: any[] = [];
 
-  onSubmit(loginForm: NgForm){
+  constructor(private router: Router) { }
+
+  onSubmit(loginForm: NgForm) {
     // this.loginList.emit(loginForm.value);
     console.log(loginForm.value);
     console.log(this.list)
     this.findObject();
   }
 
-  findObject(){
+  findObject() {
     let checkObject = null;
     this.list.forEach((obj: any) => {
-      if(obj.username === this.username){
+      if (obj.username === this.username) {
         checkObject = obj;
       }
     })
-    if(checkObject){
+    if (checkObject) {
       alert("Login Successfully");
+      this.router.navigate(['dashboard']);
     }
-    else{
+    else {
       alert("Invalid Credentials");
     }
   }
