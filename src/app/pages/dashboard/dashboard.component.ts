@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
     ]
   ]
 
-  cardViewFields: any = {
+  cardViewFields: { [key: string]: any[] } = {
     "line1": [
       { name: "name", label: "Name" },
       { name: "weight", label: "Weight" },
@@ -70,11 +70,8 @@ export class DashboardComponent implements OnInit {
     ]
   }
 
-
   ngOnInit(): void {
     this.addRow();
-
-    let group: any = [];
 
     // for (let val in this.list) {
     //   for (let data of this.list[val]) {
@@ -88,6 +85,8 @@ export class DashboardComponent implements OnInit {
     // this.keys = Object.keys(this.cardViewFields);
 
     for (let data of this.dataSource) {
+      console.log(data);
+      
       for (let i in this.cardViewFields) {
         // console.log(i);
         for (let val of this.cardViewFields[i]) {

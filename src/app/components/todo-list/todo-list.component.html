@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <h2 class="text-center">To-Do List</h2>
+    <form class="d-flex flex-row gap-3 mb-3" #todoForm="ngForm" (ngSubmit)="addTask(todoForm)">
+        <!-- <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Add to list</mat-label>
+                <input matInput type="text" name="input" placeholder="Write your next task here..."
+                    [(ngModel)]="tasks.input">
+            </mat-form-field>
+        </div> -->
+        <input type="text" name="input" class="form-control" [(ngModel)]="tasks.input"
+            [placeholder]="component.placeholder">
+        <button class="btn btn-primary w-25" type="submit">Add Task</button>
+    </form>
+
+    <ul class="list-group">
+        @if (component.searchfield) {
+        <li class="w-full d-flex justify-content-end mb-3">
+            <input type="text" name="search" placeholder="Search list here......" [(ngModel)]="searchText"
+                class="form-control w-25">
+        </li>
+        }
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let input of list | filter: searchText: component.maxnum; let i = index">
+            <div class="d-flex gap-3">
+                @if (component.checkbox) {
+                 <input type="checkbox" class="" (click)="checkTask(i)">
+                }
+                <span [ngClass]="{'checkbox':!list[i].completed}">{{i+1+". "}}{{input.value}}</span>
+            </div>
+            <div>
+                @if (component.favlist) {
+                <button class="btn btn-sm me-2" (click)="starTask(i)">
+                    <mat-icon class="text-secondary" [ngClass]="{'text-warning':list[i].star}">star</mat-icon>
+                </button>
+                }
+                <button class="btn btn-sm" (click)="deleteTask(i)">
+                    <mat-icon class="text-danger">delete_forever</mat-icon>
+                </button>
+            </div>
+        </li>
+    </ul>
+</div>

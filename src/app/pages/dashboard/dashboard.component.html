@@ -19,7 +19,7 @@
         </div>
         <ng-template #elseBlock>
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div *ngFor="let data of dataSource">
+                <!-- <div *ngFor="let data of dataSource">
                     <mat-card class="example-card" appearance="outlined">
                         <mat-card-content>
                             <div *ngFor="let val of list; let i = index" class="d-flex flex-row gap-3">
@@ -29,18 +29,19 @@
                             </div>
                         </mat-card-content>
                     </mat-card>
-                </div>
-                <!-- <div *ngFor="let data of dataSource">
+                </div> -->
+                <div *ngFor="let data of dataSource">
                     <mat-card class="example-card" appearance="outlined">
                         <mat-card-content>
                             <div *ngFor="let item of cardViewFields | keyvalue" class="d-flex flex-row gap-3">
+                                <!-- {{item.key}} -->
                                 <span *ngFor="let value of cardViewFields[item.key]">
                                     {{data[value.name]}}
                                 </span>
                             </div>
                         </mat-card-content>
                     </mat-card>
-                </div> -->
+                </div>
             </div>
         </ng-template>
     </div>
